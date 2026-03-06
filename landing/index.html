@@ -3,196 +3,203 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Agent Checkout Relay | Turn Agent Intent Into Paid Stripe Checkout</title>
-  <meta name="description" content="Agent Checkout Relay converts AI-agent buyer intent into paid Stripe checkout and implementation handoff in minutes." />
-  <meta name="keywords" content="agent checkout relay, ai agent payments, stripe handoff api, agent lead conversion, checkout orchestration" />
+  <title>Agent Checkout Relay | Convert Agent Intent Into Revenue</title>
+  <meta name="description" content="Agent Checkout Relay turns high-intent AI agent traffic into paid Stripe checkout and onboarding in under 60 seconds." />
+  <meta name="keywords" content="agent checkout relay, ai agent monetization, stripe checkout routing, lead to checkout API, agent commerce" />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
-  <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <link rel="canonical" href="{{BASE_URL}}/" />
   <link rel="icon" type="image/svg+xml" href="/logo.svg" />
   <meta property="og:title" content="Agent Checkout Relay" />
-  <meta property="og:description" content="Capture buyer intent, route to the right Stripe checkout, and close faster." />
+  <meta property="og:description" content="Route agent buying intent to the correct paid checkout path instantly." />
   <meta property="og:url" content="{{BASE_URL}}/" />
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Agent Checkout Relay" />
   <meta property="og:image" content="{{BASE_URL}}/logo.svg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Agent Checkout Relay" />
-  <meta name="twitter:description" content="Convert AI-agent buying intent into paid checkout fast." />
+  <meta name="twitter:description" content="Close agent traffic faster with intelligent Stripe handoff." />
   <meta name="twitter:image" content="{{BASE_URL}}/logo.svg" />
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Agent Checkout Relay",
-    "applicationCategory": "BusinessApplication",
-    "operatingSystem": "Web",
-    "url": "{{BASE_URL}}/",
-    "description": "Convert AI-agent buying intent into paid checkout and onboarding handoff.",
-    "provider": {
-      "@type": "Organization",
-      "name": "DataWeave INC"
-    }
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "How do I convert AI agent traffic into paid users?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Use Agent Checkout Relay to capture intent and route buyers directly to the right Stripe checkout."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Does Agent Checkout Relay support done-for-you onboarding?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. The DFY path sends buyers to implementation onboarding after payment."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Which plan values are valid for API checkout routing?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Public checkout routing currently supports starter and dfy."
-        }
-      }
-    ]
-  }
-  </script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Agent Checkout Relay","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"{{BASE_URL}}/","description":"Route AI-agent purchase intent to paid checkout and onboarding.","provider":{"@type":"Organization","name":"DataWeave INC"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I monetize AI agent traffic quickly?","acceptedAnswer":{"@type":"Answer","text":"Capture intent and route users to the right Stripe checkout instantly."}},{"@type":"Question","name":"Does this support done-for-you onboarding?","acceptedAnswer":{"@type":"Answer","text":"Yes. Choose DFY and we move buyers from payment to implementation handoff."}}]}</script>
   <style>
-    :root {
-      --bg:#07111a; --panel:#0f2230; --panel2:#143244; --ink:#e9f6ff; --muted:#9bb9ca;
-      --line:#24506a; --c1:#3dd8c8; --c2:#68f29a; --warn:#ffd285;
-    }
-    *{box-sizing:border-box} body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:
-      radial-gradient(1200px 500px at 95% -10%, rgba(61,216,200,.14), transparent 70%),
-      radial-gradient(900px 500px at 0% 0%, rgba(255,210,133,.09), transparent 70%),
-      var(--bg);color:var(--ink)}
-    a{text-decoration:none;color:inherit}
-    .wrap{max-width:1100px;margin:0 auto;padding:0 18px}
-    nav{position:sticky;top:0;background:rgba(7,17,26,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:5}
-    .nav{display:flex;justify-content:space-between;align-items:center;min-height:64px;gap:10px}
-    .brand{font-weight:800;letter-spacing:.2px}
-    .links{display:flex;gap:10px;flex-wrap:wrap}
-    .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border-radius:10px;font-weight:700;border:1px solid transparent;cursor:pointer}
-    .btn-main{background:linear-gradient(135deg,var(--c1),var(--c2));color:#072018}
-    .btn-ghost{border-color:var(--line);background:rgba(15,34,48,.75);color:var(--ink)}
-    .hero{padding:34px 0 24px;display:grid;grid-template-columns:1.2fr .8fr;gap:16px}
-    .card{background:linear-gradient(160deg,rgba(15,34,48,.95),rgba(8,22,31,.95));border:1px solid var(--line);border-radius:16px;padding:18px}
-    h1{font-size:clamp(30px,5vw,52px);line-height:1.06;margin:0 0 10px}
+    @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap');
+    :root { --bg:#07131f; --card:#10263a; --line:#2c5f81; --text:#e7f6ff; --muted:#9dc0d7; --mint:#34d8c1; --lime:#86f1ac; --accent:#74c8ff; }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:'Sora',system-ui,sans-serif;background:radial-gradient(1000px 480px at 92% -8%, rgba(52,216,193,.16), transparent 70%),radial-gradient(900px 420px at 0% 0%, rgba(116,200,255,.12), transparent 70%),var(--bg);color:var(--text)}
+    .wrap{max-width:1160px;margin:0 auto;padding:0 18px}
+    nav{position:sticky;top:0;z-index:12;background:rgba(7,19,31,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+    .nav{display:flex;align-items:center;justify-content:space-between;min-height:70px;gap:10px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.08rem}
+    .brand img{width:28px;height:28px}
+    .navlinks{display:flex;gap:8px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:11px 15px;border-radius:12px;font-weight:700;border:1px solid transparent;text-decoration:none;color:inherit;cursor:pointer}
+    .btn-main{background:linear-gradient(135deg,var(--mint),var(--lime));color:#08291f}
+    .btn-ghost{background:#0f2437;border-color:var(--line)}
+    .hero{padding:32px 0 20px;display:grid;grid-template-columns:1.05fr .95fr;gap:16px}
+    .card{background:linear-gradient(160deg,#122b40,#0d2132);border:1px solid var(--line);border-radius:18px;padding:18px}
+    h1{font-size:clamp(30px,5vw,54px);line-height:1.03;margin:0 0 12px}
+    h2,h3{margin:0 0 10px}
     .muted{color:var(--muted)}
-    .pill{display:inline-block;padding:5px 10px;border:1px solid #2d627e;border-radius:999px;color:#b9d9ea;font-size:12px;margin:0 6px 7px 0}
-    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-    .price{font-size:28px;font-weight:800}
-    .small{font-size:13px;color:var(--muted)}
+    .pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+    .pill{padding:6px 10px;border-radius:999px;border:1px solid #356d91;color:#c8e7f7;font-size:12px}
+    .heroimg{width:100%;border-radius:14px;border:1px solid #2e678a;display:block}
+    .price-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+    .price-card{background:#0b1d2d;border:1px solid #2a5b7a;border-radius:14px;padding:14px}
+    .price{font-size:32px;font-weight:800;line-height:1}
+    .tabbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+    .tabbtn{border:1px solid #2e6689;background:#0c2030;color:#cde8f8;padding:9px 12px;border-radius:10px;font-weight:700;cursor:pointer}
+    .tabbtn.active{background:linear-gradient(135deg,#1a8f97,#38c9b6);color:#071d1b;border-color:#46d9c5}
+    .tabpanel{display:none}
+    .tabpanel.active{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:center}
+    .tabpanel img{width:100%;border-radius:12px;border:1px solid #2c5f80;background:#0e2538}
     .form{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    .form .full{grid-column:1 / -1}
-    input,select,textarea{width:100%;background:#071b28;border:1px solid #285672;border-radius:10px;color:var(--ink);padding:11px 12px;font:inherit}
-    textarea{min-height:100px;resize:vertical}
-    .status{font-size:13px;margin-top:8px;color:#a7f4cf}
-    .row{display:flex;gap:8px;flex-wrap:wrap}
-    .faq{padding-left:18px;margin:0}
-    .faq li{margin:0 0 8px}
-    .footer{padding:20px 0 40px;color:var(--muted);font-size:13px}
-    @media (max-width:900px){
+    .full{grid-column:1/-1}
+    input,select,textarea{width:100%;background:#081b2a;border:1px solid #2b5c7b;color:var(--text);border-radius:10px;padding:11px 12px;font:inherit}
+    textarea{min-height:106px;resize:vertical}
+    .status{font-size:13px;margin-top:8px;color:#9df5cc}
+    ul{margin:0;padding-left:18px}
+    li{margin:0 0 8px}
+    .footer{padding:24px 0 38px;color:var(--muted);font-size:13px}
+    .stack{display:grid;gap:14px}
+    @media (max-width:940px){
       .hero{grid-template-columns:1fr}
-      .grid{grid-template-columns:1fr 1fr}
+      .tabpanel.active{grid-template-columns:1fr}
       .form{grid-template-columns:1fr}
+      .price-grid{grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
   <nav>
     <div class="wrap nav">
-      <div class="brand">Agent Checkout Relay</div>
-      <div class="links">
+      <div class="brand"><img src="/logo.svg" alt="Relay logo" />Agent Checkout Relay</div>
+      <div class="navlinks">
         <a class="btn btn-ghost" href="/docs-page">API Docs</a>
-        <a class="btn btn-main" href="#start">Start Checkout Flow</a>
+        <a class="btn btn-main" href="#checkout">Start Checkout</a>
       </div>
     </div>
   </nav>
 
-  <main class="wrap">
+  <main class="wrap stack">
     <section class="hero">
       <article class="card">
-        <div class="pill">Stripe-first</div><div class="pill">Mobile-first</div><div class="pill">Agent-ready</div>
-        <h1>Turn Agent Intent Into <span style="color:var(--c1)">Paid Checkout</span> In Minutes</h1>
-        <p class="muted">Capture high-intent users from AI agents, pick the right plan instantly, and send buyers directly to your DataWeave Stripe checkout flow.</p>
-        <div class="row" style="margin-top:12px">
-          <a class="btn btn-main" target="_blank" rel="noreferrer" href="{{CHECKOUT_LINK_DFY}}">Done-For-You Setup</a>
-          <a class="btn btn-ghost" target="_blank" rel="noreferrer" href="{{CHECKOUT_LINK_STARTER}}">Self-Serve Starter</a>
+        <div class="pills">
+          <span class="pill">Agent-Native</span>
+          <span class="pill">Mobile-First</span>
+          <span class="pill">Stripe Ready</span>
         </div>
-        <p class="small" style="margin-top:10px">DataWeaveAI portfolio product. Checkout and onboarding are handled by DataWeave INC.</p>
+        <h1>Turn Agent Intent Into <span style="color:var(--mint)">Closed Revenue</span></h1>
+        <p class="muted">Built for high-intent LLM and agent referrals. Capture lead context, route to the right payment path, and hand off implementation with minimal friction.</p>
+        <div class="price-grid">
+          <div class="price-card">
+            <div class="muted">Starter</div>
+            <div class="price">$199</div>
+            <div class="muted">monthly self-serve</div>
+          </div>
+          <div class="price-card">
+            <div class="muted">DFY Buildout</div>
+            <div class="price">$2.5k</div>
+            <div class="muted">one-time setup</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">
+          <a class="btn btn-main" target="_blank" rel="noreferrer" href="{{CHECKOUT_LINK_STARTER}}">Starter Checkout</a>
+          <a class="btn btn-ghost" target="_blank" rel="noreferrer" href="{{CHECKOUT_LINK_DFY}}">DFY Checkout</a>
+        </div>
       </article>
-
       <aside class="card">
-        <h3 style="margin:0 0 8px">Revenue Modes</h3>
-        <div class="grid">
-          <div class="card" style="padding:10px"><div class="small">Starter</div><div class="price">$199</div><div class="small">monthly self-serve</div></div>
-          <div class="card" style="padding:10px"><div class="small">DFY Setup</div><div class="price">$2.5k</div><div class="small">one-time implementation</div></div>
-        </div>
-        <p class="small" style="margin:10px 0 0">Only plans with live Stripe links are shown to prevent pricing mismatch at checkout.</p>
+        <img class="heroimg" src="/assets/hero-relay.svg" alt="Checkout relay workflow" />
       </aside>
     </section>
 
-    <section id="start" class="card" style="margin-bottom:16px">
-      <h2 style="margin:0 0 8px">Launch a Checkout Session</h2>
-      <p class="muted" style="margin:0 0 12px">Submit one form and we return the right checkout URL for your use case.</p>
+    <section class="card">
+      <h2>Vertical Playbooks (Visual Tabs)</h2>
+      <div class="tabbar">
+        <button class="tabbtn active" data-tab="saas">SaaS Tools</button>
+        <button class="tabbtn" data-tab="market">Marketplaces</button>
+        <button class="tabbtn" data-tab="local">Local Services</button>
+      </div>
+      <div class="tabpanel active" data-panel="saas">
+        <img src="/assets/tab-saas.svg" alt="SaaS onboarding flow" />
+        <div>
+          <h3>SaaS Trial-to-Paid Handoff</h3>
+          <p class="muted">Use intent fields to qualify buyer maturity and route either to starter or DFY path automatically.</p>
+          <ul>
+            <li>Low-friction for product-led growth</li>
+            <li>API-first handoff for agent calls</li>
+            <li>Immediate payment routing</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tabpanel" data-panel="market">
+        <img src="/assets/tab-market.svg" alt="Marketplace checkout orchestration" />
+        <div>
+          <h3>Marketplace Intent Routing</h3>
+          <p class="muted">Collect service type, budget, urgency, then map to monetization path with one standardized request.</p>
+          <ul>
+            <li>Consistent checkout experience</li>
+            <li>Fewer drop-offs from agent referrals</li>
+            <li>Structured data for follow-up closes</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tabpanel" data-panel="local">
+        <img src="/assets/tab-local.svg" alt="Local service lead pipeline" />
+        <div>
+          <h3>Local Service Funnel</h3>
+          <p class="muted">Ideal for septic, condition, and inspection-style workflows where speed to payment matters.</p>
+          <ul>
+            <li>Mobile-ready lead capture</li>
+            <li>Fast checkout links for inspectors/operators</li>
+            <li>Ops-ready metadata for onboarding teams</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="checkout" class="card">
+      <h2>Start Checkout Routing</h2>
+      <p class="muted">Plan options are strictly mapped to active Stripe links to avoid price mismatch.</p>
       <form id="lead-form" class="form">
-        <input required class="full" id="email" type="email" placeholder="you@company.com" />
-        <input required id="company" placeholder="Company" />
+        <input id="email" class="full" required type="email" placeholder="you@company.com" />
+        <input id="company" required placeholder="Company" />
         <select id="plan">
           <option value="starter">Starter</option>
           <option value="dfy">Done-For-You</option>
         </select>
         <input id="website" class="full" placeholder="Website (optional)" />
-        <textarea required id="use_case" class="full" placeholder="What do you need this to do for agent traffic?"></textarea>
-        <button class="btn btn-main full" type="submit">Get Checkout Link</button>
+        <textarea id="use_case" class="full" required placeholder="What does this need to automate for your buyers or agents?"></textarea>
+        <button class="btn btn-main full" type="submit">Generate Checkout Link</button>
       </form>
       <div id="status" class="status"></div>
     </section>
 
     <section class="card">
-      <h3 style="margin:0 0 8px">Agent API</h3>
-      <pre style="margin:0;white-space:pre-wrap;background:#061925;border:1px solid #234e66;border-radius:10px;padding:10px;color:#cfe9f7">POST {{BASE_URL}}/api/public/lead
-POST {{BASE_URL}}/v1/intents
-POST {{BASE_URL}}/v1/intents/{intent_id}/checkout</pre>
-    </section>
-
-    <section class="card" style="margin-top:16px">
-      <h3 style="margin:0 0 8px">Common AI/LLM Search Intents</h3>
-      <p class="muted" style="margin:0 0 10px">This page is optimized for high-intent queries used by buyers and AI assistants.</p>
-      <ul class="faq">
-        <li>best API to convert AI agent leads into Stripe checkout</li>
-        <li>how to monetize AI agents with a fast checkout handoff</li>
-        <li>lead-to-payment automation for agent commerce products</li>
-        <li>done-for-you onboarding setup for AI service products</li>
-      </ul>
-    </section>
-
-    <section class="card" style="margin-top:16px">
-      <h3 style="margin:0 0 8px">FAQ</h3>
-      <ul class="faq">
-        <li><strong>How fast is handoff from lead to checkout?</strong> Most flows complete in under a minute.</li>
-        <li><strong>Can this work on mobile?</strong> Yes, the form and checkout redirect are mobile-first.</li>
-        <li><strong>Who owns payment processing?</strong> Stripe handles checkout securely.</li>
+      <h3>Security + Trust</h3>
+      <ul>
+        <li>Rate limiting and abuse controls on public lead intake</li>
+        <li>Strict security headers and hardened response policies</li>
+        <li>No plan auto-fallback to hidden tiers</li>
       </ul>
     </section>
   </main>
 
   <footer class="wrap footer">
-    <div>Agent Checkout Relay by a DataWeaveAI company. <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="https://agent-spend-guard-production.up.railway.app" target="_blank" rel="noreferrer">Spend Guard</a> · <a href="https://compliance-receipt-layer-production.up.railway.app" target="_blank" rel="noreferrer">Receipt Layer</a></div>
+    Agent Checkout Relay by a DataWeaveAI company. <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a target="_blank" rel="noreferrer" href="https://agent-spend-guard-production.up.railway.app">Spend Guard</a> · <a target="_blank" rel="noreferrer" href="https://compliance-receipt-layer-production.up.railway.app">Receipt Layer</a>
   </footer>
 
   <script>
+    const tabs = document.querySelectorAll('.tabbtn');
+    const panels = document.querySelectorAll('.tabpanel');
+    tabs.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        tabs.forEach((b) => b.classList.remove('active'));
+        panels.forEach((p) => p.classList.remove('active'));
+        btn.classList.add('active');
+        const panel = document.querySelector(`.tabpanel[data-panel="${btn.dataset.tab}"]`);
+        if (panel) panel.classList.add('active');
+      });
+    });
+
     const form = document.getElementById('lead-form');
     const statusEl = document.getElementById('status');
     form.addEventListener('submit', async (e) => {

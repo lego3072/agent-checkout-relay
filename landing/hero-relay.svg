@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" role="img" aria-label="Checkout relay flow illustration">
+  <defs>
+    <linearGradient id="a" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#35d9c5"/><stop offset="100%" stop-color="#7bf09f"/></linearGradient>
+  </defs>
+  <rect width="720" height="420" rx="28" fill="#0c1b2a"/>
+  <rect x="48" y="92" width="180" height="92" rx="16" fill="#12283d" stroke="#2e5b7c"/>
+  <text x="68" y="128" fill="#dff6ff" font-family="Arial" font-size="20">Agent Intent</text>
+  <text x="68" y="154" fill="#96bdd3" font-family="Arial" font-size="14">service + budget + urgency</text>
+  <rect x="268" y="62" width="192" height="148" rx="18" fill="#12283d" stroke="url(#a)" stroke-width="2"/>
+  <text x="298" y="108" fill="#dff6ff" font-family="Arial" font-size="22">Relay Engine</text>
+  <text x="298" y="138" fill="#96bdd3" font-family="Arial" font-size="14">plan routing + risk checks</text>
+  <rect x="498" y="92" width="176" height="92" rx="16" fill="#112f25" stroke="#34d8b9"/>
+  <text x="528" y="128" fill="#d9ffe9" font-family="Arial" font-size="20">Stripe Checkout</text>
+  <text x="528" y="154" fill="#a8e9ce" font-family="Arial" font-size="14">starter or DFY</text>
+  <path d="M228 136h34" stroke="#42d7c4" stroke-width="8" stroke-linecap="round"/>
+  <path d="M460 136h30" stroke="#42d7c4" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="360" cy="270" r="88" fill="none" stroke="#214a67"/>
+  <circle cx="360" cy="270" r="56" fill="none" stroke="url(#a)" stroke-width="8"/>
+  <text x="314" y="278" fill="#c8eaf9" font-family="Arial" font-size="20">Close Fast</text>
+</svg>
