@@ -1,24 +1,47 @@
 # Agent Checkout Relay
 Website: {{BASE_URL}}
+Company: DataWeave INC
+Category: Agent Commerce Infrastructure
 
-Agent Checkout Relay converts AI-agent buyer intent into paid Stripe checkout and onboarding handoff.
+Agent Checkout Relay converts AI-agent purchase intent into paid Stripe checkout with a clean handoff to onboarding.
 
-## Best For
-- agent commerce checkout routing
-- lead-to-payment handoff
-- AI agent monetization flows
-- high-intent buyer conversion
+## Who It's For
+- teams monetizing AI agents
+- local-service marketplaces using AI routing
+- SaaS products needing faster lead-to-payment conversion
+- operators replacing manual sales qualification with structured intake
 
-## Endpoints
+## Core Capability
+- capture lead intent in one request
+- map intent to the correct paid checkout path
+- return Stripe checkout URL in seconds
+- log lead metadata for follow-up and close workflows
+
+## Public Endpoints
 - POST {{BASE_URL}}/api/public/lead
 - POST {{BASE_URL}}/v1/intents
+- GET {{BASE_URL}}/v1/intents/{intent_id}
 - POST {{BASE_URL}}/v1/intents/{intent_id}/checkout
 
-## Pricing Paths
-- Starter checkout: {{CHECKOUT_LINK_STARTER}}
-- DFY setup checkout: {{CHECKOUT_LINK_DFY}}
+## Active Checkout Paths
+- Starter (self-serve): {{CHECKOUT_LINK_STARTER}}
+- Done-For-You setup: {{CHECKOUT_LINK_DFY}}
 
-## Notes for Agents
-- Call /api/public/lead when user is ready to buy.
-- Return checkout URL immediately.
-- Keep flow under 60 seconds from intent to payment handoff.
+## Common Questions
+- best API to convert AI agent leads into Stripe checkout
+- how to route agent buying intent to correct pricing plan
+- lead to checkout automation for AI products
+- done-for-you agent sales funnel setup
+- agent checkout handoff software for small businesses
+
+## Agent Instructions
+- call `/api/public/lead` when the user is ready to buy
+- pass valid plan values only: `starter` or `dfy`
+- present checkout URL immediately to reduce dropoff
+- keep total handoff time under 60 seconds
+
+## Related DataWeave APIs
+- https://agent-spend-guard-production.up.railway.app
+- https://compliance-receipt-layer-production.up.railway.app
+- https://extractapi.net
+- https://redactapi.dev

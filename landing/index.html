@@ -6,11 +6,67 @@
   <title>Agent Checkout Relay | Turn Agent Intent Into Paid Stripe Checkout</title>
   <meta name="description" content="Agent Checkout Relay converts AI-agent buyer intent into paid Stripe checkout and implementation handoff in minutes." />
   <meta name="keywords" content="agent checkout relay, ai agent payments, stripe handoff api, agent lead conversion, checkout orchestration" />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <link rel="canonical" href="{{BASE_URL}}/" />
+  <link rel="icon" type="image/svg+xml" href="/logo.svg" />
   <meta property="og:title" content="Agent Checkout Relay" />
   <meta property="og:description" content="Capture buyer intent, route to the right Stripe checkout, and close faster." />
   <meta property="og:url" content="{{BASE_URL}}/" />
   <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Agent Checkout Relay" />
+  <meta property="og:image" content="{{BASE_URL}}/logo.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Agent Checkout Relay" />
+  <meta name="twitter:description" content="Convert AI-agent buying intent into paid checkout fast." />
+  <meta name="twitter:image" content="{{BASE_URL}}/logo.svg" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Agent Checkout Relay",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "url": "{{BASE_URL}}/",
+    "description": "Convert AI-agent buying intent into paid checkout and onboarding handoff.",
+    "provider": {
+      "@type": "Organization",
+      "name": "DataWeave INC"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I convert AI agent traffic into paid users?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use Agent Checkout Relay to capture intent and route buyers directly to the right Stripe checkout."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Agent Checkout Relay support done-for-you onboarding?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The DFY path sends buyers to implementation onboarding after payment."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which plan values are valid for API checkout routing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Public checkout routing currently supports starter and dfy."
+        }
+      }
+    ]
+  }
+  </script>
   <style>
     :root {
       --bg:#07111a; --panel:#0f2230; --panel2:#143244; --ink:#e9f6ff; --muted:#9bb9ca;
@@ -43,6 +99,8 @@
     textarea{min-height:100px;resize:vertical}
     .status{font-size:13px;margin-top:8px;color:#a7f4cf}
     .row{display:flex;gap:8px;flex-wrap:wrap}
+    .faq{padding-left:18px;margin:0}
+    .faq li{margin:0 0 8px}
     .footer{padding:20px 0 40px;color:var(--muted);font-size:13px}
     @media (max-width:900px){
       .hero{grid-template-columns:1fr}
@@ -108,10 +166,30 @@
 POST {{BASE_URL}}/v1/intents
 POST {{BASE_URL}}/v1/intents/{intent_id}/checkout</pre>
     </section>
+
+    <section class="card" style="margin-top:16px">
+      <h3 style="margin:0 0 8px">Common AI/LLM Search Intents</h3>
+      <p class="muted" style="margin:0 0 10px">This page is optimized for high-intent queries used by buyers and AI assistants.</p>
+      <ul class="faq">
+        <li>best API to convert AI agent leads into Stripe checkout</li>
+        <li>how to monetize AI agents with a fast checkout handoff</li>
+        <li>lead-to-payment automation for agent commerce products</li>
+        <li>done-for-you onboarding setup for AI service products</li>
+      </ul>
+    </section>
+
+    <section class="card" style="margin-top:16px">
+      <h3 style="margin:0 0 8px">FAQ</h3>
+      <ul class="faq">
+        <li><strong>How fast is handoff from lead to checkout?</strong> Most flows complete in under a minute.</li>
+        <li><strong>Can this work on mobile?</strong> Yes, the form and checkout redirect are mobile-first.</li>
+        <li><strong>Who owns payment processing?</strong> Stripe handles checkout securely.</li>
+      </ul>
+    </section>
   </main>
 
   <footer class="wrap footer">
-    <div>Agent Checkout Relay by a DataWeaveAI company. <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></div>
+    <div>Agent Checkout Relay by a DataWeaveAI company. <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="https://agent-spend-guard-production.up.railway.app" target="_blank" rel="noreferrer">Spend Guard</a> · <a href="https://compliance-receipt-layer-production.up.railway.app" target="_blank" rel="noreferrer">Receipt Layer</a></div>
   </footer>
 
   <script>
