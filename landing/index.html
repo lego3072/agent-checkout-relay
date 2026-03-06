@@ -59,6 +59,10 @@
     ul{margin:0;padding-left:18px}
     li{margin:0 0 8px}
     .footer{padding:24px 0 38px;color:var(--muted);font-size:13px}
+    .footerbox{background:linear-gradient(160deg,#10263a,#0a1d2d);border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+    .footerlinks{display:flex;gap:8px;flex-wrap:wrap}
+    .footerlinks a{color:#b8e6ff;text-decoration:none;border:1px solid #2a5f80;border-radius:999px;padding:6px 10px}
+    .footerlinks a:hover{border-color:#66d6c7;color:#d8fff3}
     .stack{display:grid;gap:14px}
     @media (max-width:940px){
       .hero{grid-template-columns:1fr}
@@ -157,8 +161,8 @@
     </section>
 
     <section id="checkout" class="card">
-      <h2>Start Checkout Routing</h2>
-      <p class="muted">Plan options are strictly mapped to active Stripe links to avoid price mismatch.</p>
+      <h2>Buy Instantly Or Submit Optional Context</h2>
+      <p class="muted">Use the instant checkout buttons above for direct purchase. This form is optional and only adds onboarding context before sending you to the same Stripe plan price.</p>
       <form id="lead-form" class="form">
         <input id="email" class="full" required type="email" placeholder="you@company.com" />
         <input id="company" required placeholder="Company" />
@@ -168,9 +172,19 @@
         </select>
         <input id="website" class="full" placeholder="Website (optional)" />
         <textarea id="use_case" class="full" required placeholder="What does this need to automate for your buyers or agents?"></textarea>
-        <button class="btn btn-main full" type="submit">Generate Checkout Link</button>
+        <button class="btn btn-main full" type="submit">Continue To Stripe</button>
       </form>
       <div id="status" class="status"></div>
+    </section>
+
+    <section class="card">
+      <h3>Already Paid? Get Your API Key</h3>
+      <p class="muted">Use the same billing email used at checkout. We will issue or rotate your API key for active accounts.</p>
+      <form id="access-form" class="form">
+        <input id="access-email" class="full" required type="email" placeholder="billing@company.com" />
+        <button class="btn btn-ghost full" type="submit">Send Access Key</button>
+      </form>
+      <div id="access-status" class="status"></div>
     </section>
 
     <section class="card">
@@ -184,7 +198,18 @@
   </main>
 
   <footer class="wrap footer">
-    Agent Checkout Relay by a DataWeaveAI company. <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a target="_blank" rel="noreferrer" href="https://agent-spend-guard-production.up.railway.app">Spend Guard</a> · <a target="_blank" rel="noreferrer" href="https://compliance-receipt-layer-production.up.railway.app">Receipt Layer</a>
+    <div class="footerbox">
+      <div>
+        <strong>Agent Checkout Relay</strong><br />
+        <span class="muted">A DataWeave INC portfolio product.</span>
+      </div>
+      <div class="footerlinks">
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+        <a target="_blank" rel="noreferrer" href="https://agent-spend-guard-production.up.railway.app">Spend Guard</a>
+        <a target="_blank" rel="noreferrer" href="https://compliance-receipt-layer-production.up.railway.app">Receipt Layer</a>
+      </div>
+    </div>
   </footer>
 
   <script>
@@ -202,6 +227,8 @@
 
     const form = document.getElementById('lead-form');
     const statusEl = document.getElementById('status');
+    const accessForm = document.getElementById('access-form');
+    const accessStatusEl = document.getElementById('access-status');
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       statusEl.textContent = 'Generating secure checkout link...';
@@ -225,6 +252,23 @@
         window.location.href = data.checkout_url;
       } catch (err) {
         statusEl.textContent = err.message || 'Could not create checkout link.';
+      }
+    });
+
+    accessForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      accessStatusEl.textContent = 'Requesting API key...';
+      try {
+        const res = await fetch('/api/public/access-key', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({email: document.getElementById('access-email').value.trim()})
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.detail || 'Unable to request access key');
+        accessStatusEl.textContent = 'If your account is active, your key has been sent to your inbox.';
+      } catch (err) {
+        accessStatusEl.textContent = err.message || 'Access key request failed.';
       }
     });
   </script>

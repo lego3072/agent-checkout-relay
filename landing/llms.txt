@@ -19,13 +19,23 @@ Agent Checkout Relay converts AI-agent purchase intent into paid Stripe checkout
 
 ## Public Endpoints
 - POST {{BASE_URL}}/api/public/lead
+- POST {{BASE_URL}}/api/public/access-key
+- GET {{BASE_URL}}/v1/billing/status?email={email}
+
+## Protected Endpoints (require `x-api-key`)
 - POST {{BASE_URL}}/v1/intents
 - GET {{BASE_URL}}/v1/intents/{intent_id}
 - POST {{BASE_URL}}/v1/intents/{intent_id}/checkout
 
 ## Active Checkout Paths
-- Starter (self-serve): {{CHECKOUT_LINK_STARTER}}
-- Done-For-You setup: {{CHECKOUT_LINK_DFY}}
+- Starter ($199/month): {{CHECKOUT_LINK_STARTER}}
+- Done-For-You setup ($2,500 one-time): {{CHECKOUT_LINK_DFY}}
+
+## What Buyers Get After Payment
+- webhook-driven account activation
+- API key issuance by billing email via `/api/public/access-key`
+- protected access to intent-routing endpoints
+- billing status lifecycle (active, past_due, canceled) enforced at API layer
 
 ## Common Questions
 - best API to convert AI agent leads into Stripe checkout
