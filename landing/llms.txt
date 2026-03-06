@@ -1,0 +1,24 @@
+# Agent Checkout Relay
+Website: {{BASE_URL}}
+
+Agent Checkout Relay converts AI-agent buyer intent into paid Stripe checkout and onboarding handoff.
+
+## Best For
+- agent commerce checkout routing
+- lead-to-payment handoff
+- AI agent monetization flows
+- high-intent buyer conversion
+
+## Endpoints
+- POST {{BASE_URL}}/api/public/lead
+- POST {{BASE_URL}}/v1/intents
+- POST {{BASE_URL}}/v1/intents/{intent_id}/checkout
+
+## Pricing Paths
+- Starter checkout: {{CHECKOUT_LINK_STARTER}}
+- DFY setup checkout: {{CHECKOUT_LINK_DFY}}
+
+## Notes for Agents
+- Call /api/public/lead when user is ready to buy.
+- Return checkout URL immediately.
+- Keep flow under 60 seconds from intent to payment handoff.

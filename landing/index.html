@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agent Checkout Relay | Turn Agent Intent Into Paid Stripe Checkout</title>
+  <meta name="description" content="Agent Checkout Relay converts AI-agent buyer intent into paid Stripe checkout and implementation handoff in minutes." />
+  <meta name="keywords" content="agent checkout relay, ai agent payments, stripe handoff api, agent lead conversion, checkout orchestration" />
+  <link rel="canonical" href="{{BASE_URL}}/" />
+  <meta property="og:title" content="Agent Checkout Relay" />
+  <meta property="og:description" content="Capture buyer intent, route to the right Stripe checkout, and close faster." />
+  <meta property="og:url" content="{{BASE_URL}}/" />
+  <meta property="og:type" content="website" />
+  <style>
+    :root {
+      --bg:#07111a; --panel:#0f2230; --panel2:#143244; --ink:#e9f6ff; --muted:#9bb9ca;
+      --line:#24506a; --c1:#3dd8c8; --c2:#68f29a; --warn:#ffd285;
+    }
+    *{box-sizing:border-box} body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:
+      radial-gradient(1200px 500px at 95% -10%, rgba(61,216,200,.14), transparent 70%),
+      radial-gradient(900px 500px at 0% 0%, rgba(255,210,133,.09), transparent 70%),
+      var(--bg);color:var(--ink)}
+    a{text-decoration:none;color:inherit}
+    .wrap{max-width:1100px;margin:0 auto;padding:0 18px}
+    nav{position:sticky;top:0;background:rgba(7,17,26,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:5}
+    .nav{display:flex;justify-content:space-between;align-items:center;min-height:64px;gap:10px}
+    .brand{font-weight:800;letter-spacing:.2px}
+    .links{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border-radius:10px;font-weight:700;border:1px solid transparent;cursor:pointer}
+    .btn-main{background:linear-gradient(135deg,var(--c1),var(--c2));color:#072018}
+    .btn-ghost{border-color:var(--line);background:rgba(15,34,48,.75);color:var(--ink)}
+    .hero{padding:34px 0 24px;display:grid;grid-template-columns:1.2fr .8fr;gap:16px}
+    .card{background:linear-gradient(160deg,rgba(15,34,48,.95),rgba(8,22,31,.95));border:1px solid var(--line);border-radius:16px;padding:18px}
+    h1{font-size:clamp(30px,5vw,52px);line-height:1.06;margin:0 0 10px}
+    .muted{color:var(--muted)}
+    .pill{display:inline-block;padding:5px 10px;border:1px solid #2d627e;border-radius:999px;color:#b9d9ea;font-size:12px;margin:0 6px 7px 0}
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+    .price{font-size:28px;font-weight:800}
+    .small{font-size:13px;color:var(--muted)}
+    .form{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .form .full{grid-column:1 / -1}
+    input,select,textarea{width:100%;background:#071b28;border:1px solid #285672;border-radius:10px;color:var(--ink);padding:11px 12px;font:inherit}
+    textarea{min-height:100px;resize:vertical}
+    .status{font-size:13px;margin-top:8px;color:#a7f4cf}
+    .row{display:flex;gap:8px;flex-wrap:wrap}
+    .footer{padding:20px 0 40px;color:var(--muted);font-size:13px}
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr 1fr}
+      .form{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="wrap nav">
+      <div class="brand">Agent Checkout Relay</div>
+      <div class="links">
+        <a class="btn btn-ghost" href="/docs-page">API Docs</a>
+        <a class="btn btn-main" href="#start">Start Checkout Flow</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section class="hero">
+      <article class="card">
+        <div class="pill">Stripe-first</div><div class="pill">Mobile-first</div><div class="pill">Agent-ready</div>
+        <h1>Turn Agent Intent Into <span style="color:var(--c1)">Paid Checkout</span> In Minutes</h1>
+        <p class="muted">Capture high-intent users from AI agents, pick the right plan instantly, and send buyers directly to your DataWeave Stripe checkout flow.</p>
+        <div class="row" style="margin-top:12px">
+          <a class="btn btn-main" target="_blank" rel="noreferrer" href="{{CHECKOUT_LINK_DFY}}">Done-For-You Setup</a>
+          <a class="btn btn-ghost" target="_blank" rel="noreferrer" href="{{CHECKOUT_LINK_STARTER}}">Self-Serve Starter</a>
+        </div>
+        <p class="small" style="margin-top:10px">DataWeaveAI portfolio product. Checkout and onboarding are handled by DataWeave INC.</p>
+      </article>
+
+      <aside class="card">
+        <h3 style="margin:0 0 8px">Revenue Modes</h3>
+        <div class="grid">
+          <div class="card" style="padding:10px"><div class="small">Starter</div><div class="price">$199</div><div class="small">monthly</div></div>
+          <div class="card" style="padding:10px"><div class="small">Growth</div><div class="price">$499</div><div class="small">monthly</div></div>
+          <div class="card" style="padding:10px"><div class="small">Scale</div><div class="price">$999</div><div class="small">monthly</div></div>
+          <div class="card" style="padding:10px"><div class="small">DFY Setup</div><div class="price">$2.5k</div><div class="small">one-time</div></div>
+        </div>
+        <p class="small" style="margin:10px 0 0">Use the API to route each lead to the highest-fit checkout path automatically.</p>
+      </aside>
+    </section>
+
+    <section id="start" class="card" style="margin-bottom:16px">
+      <h2 style="margin:0 0 8px">Launch a Checkout Session</h2>
+      <p class="muted" style="margin:0 0 12px">Submit one form and we return the right checkout URL for your use case.</p>
+      <form id="lead-form" class="form">
+        <input required class="full" id="email" type="email" placeholder="you@company.com" />
+        <input required id="company" placeholder="Company" />
+        <select id="plan">
+          <option value="starter">Starter</option>
+          <option value="growth">Growth</option>
+          <option value="scale">Scale</option>
+          <option value="dfy">Done-For-You</option>
+        </select>
+        <input id="website" class="full" placeholder="Website (optional)" />
+        <textarea required id="use_case" class="full" placeholder="What do you need this to do for agent traffic?"></textarea>
+        <button class="btn btn-main full" type="submit">Get Checkout Link</button>
+      </form>
+      <div id="status" class="status"></div>
+    </section>
+
+    <section class="card">
+      <h3 style="margin:0 0 8px">Agent API</h3>
+      <pre style="margin:0;white-space:pre-wrap;background:#061925;border:1px solid #234e66;border-radius:10px;padding:10px;color:#cfe9f7">POST {{BASE_URL}}/api/public/lead
+POST {{BASE_URL}}/v1/intents
+POST {{BASE_URL}}/v1/intents/{intent_id}/checkout</pre>
+    </section>
+  </main>
+
+  <footer class="wrap footer">
+    <div>Agent Checkout Relay by a DataWeaveAI company. <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></div>
+  </footer>
+
+  <script>
+    const form = document.getElementById('lead-form');
+    const statusEl = document.getElementById('status');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      statusEl.textContent = 'Generating secure checkout link...';
+      const payload = {
+        email: document.getElementById('email').value.trim(),
+        company: document.getElementById('company').value.trim(),
+        website: document.getElementById('website').value.trim() || null,
+        use_case: document.getElementById('use_case').value.trim(),
+        plan: document.getElementById('plan').value,
+        source: 'landing_form'
+      };
+      try {
+        const res = await fetch('/api/public/lead', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (!res.ok || !data.checkout_url) throw new Error(data.detail || 'Unable to start checkout');
+        statusEl.textContent = 'Checkout ready. Redirecting...';
+        window.location.href = data.checkout_url;
+      } catch (err) {
+        statusEl.textContent = err.message || 'Could not create checkout link.';
+      }
+    });
+  </script>
+</body>
+</html>
