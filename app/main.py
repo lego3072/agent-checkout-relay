@@ -59,6 +59,19 @@ if stripe and STRIPE_SECRET_KEY:
 
 EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
 ACTIVE_ACCOUNT_STATUSES = {"active", "trialing"}
+BLOCKED_CHECKOUT_EMAIL_DOMAINS = {
+    "example.com",
+    "example.org",
+    "example.net",
+    "mailinator.com",
+    "guerrillamail.com",
+    "tempmail.com",
+    "10minutemail.com",
+    "yopmail.com",
+    "trashmail.com",
+    "sharklasers.com",
+}
+BLOCKED_CHECKOUT_LOCAL_TOKENS = ("test", "fake", "demo", "bot", "spam", "temp", "example")
 
 
 class LeadRequest(BaseModel):
@@ -260,6 +273,20 @@ def send_resend_email(subject: str, html: str, to_addresses: Optional[list[str]]
 
 def normalize_email(email: str) -> str:
     return email.strip().lower()
+
+
+def blocked_checkout_email_reason(email: str) -> Optional[str]:
+    normalized = normalize_email(email)
+    if not EMAIL_RE.match(normalized):
+        return "Valid email required"
+    local, _, domain = normalized.partition("@")
+    if not local or not domain:
+        return "Valid email required"
+    if domain in BLOCKED_CHECKOUT_EMAIL_DOMAINS or domain.endswith(".invalid"):
+        return "Use a real work email to continue"
+    if any(token in local for token in BLOCKED_CHECKOUT_LOCAL_TOKENS):
+        return "Test/disposable emails are blocked"
+    return None
 
 
 def to_iso_from_unix(ts: Any) -> Optional[str]:
@@ -545,8 +572,10 @@ def create_lead(payload: LeadRequest, request: Request) -> dict[str, Any]:
     ip = client_ip(request)
     check_rate_limit(f"lead:{ip}", LEAD_RATE_LIMIT_PER_MINUTE, API_RATE_WINDOW_SECONDS)
 
-    if not EMAIL_RE.match(payload.email):
-        raise HTTPException(status_code=400, detail="Invalid email")
+    email = normalize_email(payload.email)
+    blocked_reason = blocked_checkout_email_reason(email)
+    if blocked_reason:
+        raise HTTPException(status_code=400, detail=blocked_reason)
 
     lead_id = f"lead_{secrets.token_hex(8)}"
     checkout_url = checkout_link_for_plan(payload.plan)
@@ -560,7 +589,7 @@ def create_lead(payload: LeadRequest, request: Request) -> dict[str, Any]:
             (
                 lead_id,
                 now_iso(),
-                payload.email.lower().strip(),
+                email,
                 payload.company.strip(),
                 (payload.website or "").strip() or None,
                 payload.use_case.strip(),
@@ -575,7 +604,7 @@ def create_lead(payload: LeadRequest, request: Request) -> dict[str, Any]:
         subject=f"Relay lead: {payload.plan}",
         html=(
             f"<p><strong>New lead</strong></p>"
-            f"<p>Email: {payload.email}<br>"
+            f"<p>Email: {email}<br>"
             f"Company: {payload.company}<br>"
             f"Plan: {payload.plan}<br>"
             f"Checkout: <a href='{checkout_url}'>{checkout_url}</a></p>"
