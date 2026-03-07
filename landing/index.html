@@ -20,6 +20,7 @@
   <meta name="twitter:image" content="{{BASE_URL}}/logo.svg" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Agent Checkout Relay","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"{{BASE_URL}}/","description":"Route AI-agent purchase intent to paid checkout and onboarding.","provider":{"@type":"Organization","name":"DataWeave INC"}}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I monetize AI agent traffic quickly?","acceptedAnswer":{"@type":"Answer","text":"Capture intent and route users to the right Stripe checkout instantly."}},{"@type":"Question","name":"Does this support done-for-you onboarding?","acceptedAnswer":{"@type":"Answer","text":"Yes. Choose DFY and we move buyers from payment to implementation handoff."}}]}</script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap');
     :root { --bg:#07131f; --card:#10263a; --line:#2c5f81; --text:#e7f6ff; --muted:#9dc0d7; --mint:#34d8c1; --lime:#86f1ac; --accent:#74c8ff; }
@@ -116,6 +117,15 @@
     </section>
 
     <section class="card">
+      <h2>What You Get Immediately After Payment</h2>
+      <ul>
+        <li>Live checkout routing path (starter or DFY) activated for your billing account.</li>
+        <li>API key sent to billing email with protected endpoint access instructions.</li>
+        <li>Implementation checklist + kickoff path so onboarding starts the same day.</li>
+      </ul>
+    </section>
+
+    <section class="card">
       <h2>Vertical Playbooks (Visual Tabs)</h2>
       <div class="tabbar">
         <button class="tabbtn active" data-tab="saas">SaaS Tools</button>
@@ -172,6 +182,9 @@
         </select>
         <input id="website" class="full" placeholder="Website (optional)" />
         <textarea id="use_case" class="full" required placeholder="What does this need to automate for your buyers or agents?"></textarea>
+        <div class="full">
+          <div class="cf-turnstile" data-sitekey="{{TURNSTILE_SITE_KEY}}" data-callback="relayTurnstileDone"></div>
+        </div>
         <button class="btn btn-main full" type="submit">Continue To Stripe</button>
       </form>
       <div id="status" class="status"></div>
@@ -213,6 +226,22 @@
   </footer>
 
   <script>
+    let turnstileToken = '';
+
+    function relayTurnstileDone(token) {
+      turnstileToken = token || '';
+    }
+
+    async function trackEvent(eventName, plan) {
+      try {
+        await fetch('/api/public/event', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ event: eventName, plan: plan || null, source: 'landing' })
+        });
+      } catch (_) {}
+    }
+
     const tabs = document.querySelectorAll('.tabbtn');
     const panels = document.querySelectorAll('.tabpanel');
     tabs.forEach((btn) => {
@@ -231,16 +260,19 @@
     const accessStatusEl = document.getElementById('access-status');
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      const selectedPlan = document.getElementById('plan').value;
       statusEl.textContent = 'Generating secure checkout link...';
       const payload = {
         email: document.getElementById('email').value.trim(),
         company: document.getElementById('company').value.trim(),
         website: document.getElementById('website').value.trim() || null,
         use_case: document.getElementById('use_case').value.trim(),
-        plan: document.getElementById('plan').value,
-        source: 'landing_form'
+        plan: selectedPlan,
+        source: 'landing_form',
+        turnstile_token: turnstileToken || null
       };
       try {
+        await trackEvent('checkout_started', selectedPlan);
         const res = await fetch('/api/public/lead', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
@@ -267,10 +299,13 @@
         const data = await res.json();
         if (!res.ok) throw new Error(data.detail || 'Unable to request access key');
         accessStatusEl.textContent = 'If your account is active, your key has been sent to your inbox.';
+        trackEvent('activation_completed', null);
       } catch (err) {
         accessStatusEl.textContent = err.message || 'Access key request failed.';
       }
     });
+
+    trackEvent('landing_view', null);
   </script>
 </body>
 </html>
