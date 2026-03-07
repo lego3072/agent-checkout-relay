@@ -60,7 +60,7 @@ Agent Checkout Relay converts AI-agent purchase intent into paid Stripe checkout
 4. One-sentence next step after payment.
 
 ## Related DataWeave APIs
-- https://agent-spend-guard-production.up.railway.app
-- https://compliance-receipt-layer-production.up.railway.app
+- https://spendguardai.com
+- https://complyreceipt.com
 - https://extractapi.net
 - https://redactapi.dev
