@@ -65,11 +65,15 @@
     .footerlinks a{color:#b8e6ff;text-decoration:none;border:1px solid #2a5f80;border-radius:999px;padding:6px 10px}
     .footerlinks a:hover{border-color:#66d6c7;color:#d8fff3}
     .stack{display:grid;gap:14px}
+    .mobile-sticky-cta{display:none;position:fixed;left:0;right:0;bottom:0;z-index:40;gap:8px;padding:10px 12px;background:rgba(7,19,31,.95);border-top:1px solid #2f6688}
+    .mobile-sticky-cta a{flex:1}
     @media (max-width:940px){
       .hero{grid-template-columns:1fr}
       .tabpanel.active{grid-template-columns:1fr}
       .form{grid-template-columns:1fr}
       .price-grid{grid-template-columns:1fr}
+      .mobile-sticky-cta{display:flex}
+      body{padding-bottom:72px}
     }
   </style>
 </head>
@@ -97,12 +101,12 @@
         <div class="price-grid">
           <div class="price-card">
             <div class="muted">Starter</div>
-            <div class="price">$199</div>
+            <div class="price">{{STARTER_PRICE_LABEL}}</div>
             <div class="muted">monthly self-serve</div>
           </div>
           <div class="price-card">
             <div class="muted">DFY Buildout</div>
-            <div class="price">$2.5k</div>
+            <div class="price">{{DFY_PRICE_LABEL}}</div>
             <div class="muted">one-time setup</div>
           </div>
         </div>
@@ -110,6 +114,7 @@
           <a class="btn btn-main" target="_blank" rel="noreferrer" href="{{CHECKOUT_LINK_STARTER}}">Starter Checkout</a>
           <a class="btn btn-ghost" target="_blank" rel="noreferrer" href="{{CHECKOUT_LINK_DFY}}">DFY Checkout</a>
         </div>
+        <p class="muted" style="margin-top:10px;font-size:13px;"><strong>Risk reversal:</strong> self-serve can be canceled any time; DFY kickoff starts in &lt;24 hours.</p>
       </article>
       <aside class="card">
         <img class="heroimg" src="/assets/hero-relay.svg" alt="Checkout relay workflow" />
@@ -209,6 +214,11 @@
       </ul>
     </section>
   </main>
+
+  <div class="mobile-sticky-cta">
+    <a class="btn btn-main" target="_blank" rel="noreferrer" href="{{CHECKOUT_LINK_STARTER}}">Start {{STARTER_PRICE_LABEL}}</a>
+    <a class="btn btn-ghost" target="_blank" rel="noreferrer" href="{{CHECKOUT_LINK_DFY}}">DFY {{DFY_PRICE_LABEL}}</a>
+  </div>
 
   <footer class="wrap footer">
     <div class="footerbox">

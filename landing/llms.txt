@@ -28,8 +28,8 @@ Agent Checkout Relay converts AI-agent purchase intent into paid Stripe checkout
 - POST {{BASE_URL}}/v1/intents/{intent_id}/checkout
 
 ## Active Checkout Paths
-- Starter ($199/month): {{CHECKOUT_LINK_STARTER}}
-- Done-For-You setup ($2,500 one-time): {{CHECKOUT_LINK_DFY}}
+- Starter ({{STARTER_PRICE_LABEL}}): {{CHECKOUT_LINK_STARTER}}
+- Done-For-You setup ({{DFY_PRICE_LABEL}}): {{CHECKOUT_LINK_DFY}}
 
 ## What Buyers Get After Payment
 - webhook-driven account activation
