@@ -42,7 +42,7 @@
     .muted{color:var(--muted)}
     .pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
     .pill{padding:6px 10px;border-radius:999px;border:1px solid #356d91;color:#c8e7f7;font-size:12px}
-    .heroimg{width:100%;border-radius:14px;border:1px solid #2e678a;display:block}
+    .heroimg{width:100%;border-radius:14px;border:1px solid #2e678a;display:block;min-height:320px;object-fit:cover;background:#0d2232}\n    .visual{display:grid;gap:10px}\n    .visual-note{background:#0b1e2d;border:1px solid #2a5c7b;border-radius:12px;padding:12px}\n    .visual-note strong{display:block;font-size:14px;margin-bottom:6px}
     .price-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
     .price-card{background:#0b1d2d;border:1px solid #2a5b7a;border-radius:14px;padding:14px}
     .price{font-size:32px;font-weight:800;line-height:1}
@@ -116,14 +116,12 @@
         </div>
         <p class="muted" style="margin-top:10px;font-size:13px;"><strong>Risk reversal:</strong> self-serve can be canceled any time; DFY kickoff starts in &lt;24 hours.</p>
       </article>
-      <aside class="card">
-        <img class="heroimg" src="/assets/hero-relay.svg" alt="Checkout relay workflow" />
-      </aside>
+      <aside class="card visual">\n        <img class="heroimg" src="/assets/hero-relay.svg" alt="Checkout relay workflow" />\n        <div class="visual-note">\n          <strong>Live AI Workflow</strong>\n          <p class="muted">Intent -> Analysis -> Checkout -> Activation in under 60 seconds.</p>\n          <a class="btn btn-ghost" href="/docs-page">View API Docs</a>\n        </div>\n      </aside>
     </section>
 
     <section class="card">
       <h2>What You Get Immediately After Payment</h2>
-      <ul>
+      <p class="muted">Checkout is instant and product access follows your selected path.</p>\n      <ul>
         <li>Live checkout routing path (starter or DFY) activated for your billing account.</li>
         <li>API key sent to billing email with protected endpoint access instructions.</li>
         <li>Implementation checklist + kickoff path so onboarding starts the same day.</li>
