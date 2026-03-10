@@ -33,7 +33,7 @@ DATA_DIR.mkdir(parents=True, exist_ok=True)
 
 APP_NAME = "Agent Checkout Relay"
 APP_SLUG = "relayapi"
-DEFAULT_BASE_URL = "https://relayapi.dataweaveai.com"
+DEFAULT_BASE_URL = "https://checkoutrelay.com"
 
 PUBLIC_BASE_URL = os.getenv("PUBLIC_BASE_URL", DEFAULT_BASE_URL).rstrip("/")
 FOLLOWUP_INBOX_EMAIL = os.getenv("FOLLOWUP_INBOX_EMAIL", "joseph@dataweaveai.com").strip()
